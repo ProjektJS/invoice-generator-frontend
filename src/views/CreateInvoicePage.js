@@ -1,11 +1,17 @@
 import React from 'react';
-import { Form } from 'components';
-import UserPageTemplate from 'Templates/UserPageTemplate';
+import { useLocation } from 'react-router-dom';
+import { routes } from 'routes';
+import UserPageTemplate from 'templates/UserPageTemplate';
+import { CommodityStep, PurchaserStep, ItemsStep } from 'components/Form';
 
 const CreateInvoicePage = () => {
+  const { pathname } = useLocation();
+
   return (
     <UserPageTemplate>
-      <Form />
+      {pathname === routes.commodityStep && <CommodityStep />}
+      {pathname === routes.purchaserStep && <PurchaserStep />}
+      {pathname === routes.itemsStep && <ItemsStep />}
     </UserPageTemplate>
   );
 };

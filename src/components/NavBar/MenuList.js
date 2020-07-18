@@ -1,24 +1,19 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { makeStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-
-const useStyles = makeStyles((theme) => ({
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-}));
+import { useStyles } from 'theme/styles';
+import { routes } from 'routes';
 
 const MenuList = () => {
   const classes = useStyles();
   const { pathname } = useLocation();
 
   const pages = [
-    { name: 'Strona główna', to: '/' },
-    { name: 'Uwórz fakturę', to: '/create' },
+    { name: 'Strona główna', to: `${routes.home}` },
+    { name: 'Uwórz fakturę', to: `${routes.create}` },
   ];
 
   const [anchorEl, setAnchorEl] = useState(null);
