@@ -1,12 +1,15 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useForm, useFieldArray } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import { useForm, useFieldArray } from 'react-hook-form';
+import IconButton from '@material-ui/core/IconButton';
+import DeleteIcon from '@material-ui/icons/Delete';
+import StepperBar from 'components/StepperBar';
 import { validationSchemaItems } from 'utils/validationSchema';
-import { addInvoiceData } from 'data/actions';
+import { addItemsData } from 'data/actions';
 import { routes } from 'routes';
 import { useStyles } from 'theme/styles';
 
@@ -22,130 +25,97 @@ const ItemStep = () => {
     control,
     name: 'items',
   });
-  const onSubmit = (data) => dispatch(addInvoiceData(data));
+  const onSubmit = (data) => {
+    dispatch(addItemsData(data.items));
+    history.push(routes.othersStep);
+  };
+
+  const items = useSelector((state) => state.invoice.items);
 
   return (
-    <form className={classes.formContainer} onSubmit={handleSubmit(onSubmit)}>
-      <ul>
-        {fields.map((item, index) => {
-          return (
-            <li key={item.id} className={classes.liContainer}>
-              <Button
-                className={classes.button}
-                variant="contained"
-                color="secondary"
-                onClick={() => remove(index)}
-              >
-                X
-              </Button>
-              <TextField
-                className={classes.textField}
-                id={`items[${index}].itemName`}
-                name={`items[${index}].itemName`}
-                label="Nazwa towaru"
-                inputRef={register()}
-                error={errors?.items?.[index]?.itemName}
-                helperText={errors?.items?.[index]?.itemName?.message}
-              />
-              <TextField
-                className={classes.textField}
-                id={`items[${index}].quantity"`}
-                name={`items[${index}].quantity`}
-                label="ilość szt."
-                inputRef={register()}
-                error={errors?.items?.[index]?.quantity}
-                helperText={errors?.items?.[index].quantity?.message}
-              />
-              <TextField
-                className={classes.textField}
-                id={`items[${index}].priceNetto`}
-                name={`items[${index}].priceNetto`}
-                label="Cena netto"
-                inputRef={register()}
-                error={errors?.items?.[index]?.priceNetto}
-                helperText={errors?.items?.[index]?.priceNetto?.message}
-              />
-              <TextField
-                className={classes.textField}
-                id={`items[${index}].valueNetto`}
-                name={`items[${index}].valueNetto`}
-                label="Wartość netto"
-                defaultValue="0.00"
-                disabled
-                inputRef={register()}
-                error={errors?.items?.[index]?.valueNetto}
-                helperText={errors?.items?.[index]?.valueNetto?.message}
-              />
-              <TextField
-                className={classes.textField}
-                id={`items[${index}].VAT`}
-                name={`items[${index}].VAT`}
-                label="Stawka VAT %"
-                defaultValue="23"
-                inputRef={register()}
-                error={errors?.items?.[index]?.VAT}
-                helperText={errors?.items?.[index]?.VAT?.message}
-              />
+    <div>
+      <StepperBar activeStep={2} />
+      <form position="static" className={classes.formContainer} onSubmit={handleSubmit(onSubmit)}>
+        <ul>
+          {fields.map((item, index) => {
+            return (
+              <li key={item.id} className={classes.liContainer}>
+                <IconButton aria-label="delete">
+                  <DeleteIcon onClick={() => remove(index)} />
+                </IconButton>
+                <TextField
+                  className={classes.textField}
+                  id={`items[${index}].name`}
+                  name={`items[${index}].name`}
+                  label="Nazwa towaru"
+                  inputRef={register()}
+                  error={errors?.items?.[index]?.name}
+                  helperText={errors?.items?.[index]?.name?.message}
+                  defaultValue={items[index]?.name}
+                />
+                <TextField
+                  className={classes.textField}
+                  id={`items[${index}].quantity"`}
+                  name={`items[${index}].quantity`}
+                  label="ilość szt."
+                  inputRef={register()}
+                  error={errors?.items?.[index]?.quantity}
+                  helperText={errors?.items?.[index]?.quantity?.message}
+                  defaultValue={items[index]?.quantity}
+                />
+                <TextField
+                  className={classes.textField}
+                  id={`items[${index}].unitPrice`}
+                  name={`items[${index}].unitPrice`}
+                  label="Cena jednostkowa"
+                  inputRef={register()}
+                  error={errors?.items?.[index]?.unitPrice}
+                  helperText={errors?.items?.[index]?.unitPrice?.message}
+                  defaultValue={items[index]?.unitPrice}
+                />
 
-              <TextField
-                className={classes.textField}
-                id={`items[${index}].amountVAT`}
-                name={`items[${index}].amountVAT`}
-                label="Kowta VAT"
-                inputRef={register()}
-                error={errors?.items?.[index]?.amountVAT}
-                helperText={errors?.items?.[index]?.amountVAT?.message}
-              />
-
-              <TextField
-                className={classes.textField}
-                id={`items[${index}].valueBrutto`}
-                name={`items[${index}].valueBrutto`}
-                label="Wartość Brutto"
-                defaultValue="0.00"
-                disabled
-                inputRef={register()}
-                error={errors?.items?.[index]?.valueBrutto}
-                helperText={errors?.items?.[index]?.valueBrutto?.message}
-              />
-            </li>
-          );
-        })}
-      </ul>
-      <section>
+                <TextField
+                  className={classes.textField}
+                  id={`items[${index}].VAT`}
+                  name={`items[${index}].VAT`}
+                  label="Stawka VAT %"
+                  inputRef={register()}
+                  error={errors?.items?.[index]?.VAT}
+                  helperText={errors?.items?.[index]?.VAT?.message}
+                  defaultValue={items[index]?.VAT || '23'}
+                />
+              </li>
+            );
+          })}
+        </ul>
         <Button
-          className={classes.button}
-          variant="contained"
-          color="secondary"
+          variant="secondary"
           onClick={() => {
             append({
-              itemName: '',
+              name: '',
               quantity: '',
-              priceNetto: '',
-              valueNetto: '',
+              unitPrice: '',
               VAT: '',
-              amountVAT: '',
-              valueBrutto: '',
             });
           }}
         >
-          Dodaj towar/usługę
+          Dodaj nowy towar/usługę
         </Button>
-      </section>
-      <div className={classes.buttonContainer}>
-        <Button
-          className={classes.button}
-          variant="contained"
-          color="secondary"
-          onClick={() => history.push(routes.purchaserStep)}
-        >
-          Cofnij
-        </Button>
-        <Button className={classes.button} type="submit" variant="contained" color="primary">
-          Dalej
-        </Button>
-      </div>
-    </form>
+        <div className={classes.buttonContainer}>
+          <Button
+            className={classes.button}
+            variant="contained"
+            color="secondary"
+            onClick={() => history.push(routes.clientStep)}
+          >
+            Cofnij
+          </Button>
+          <Button className={classes.button} type="submit" variant="contained" color="primary">
+            Dalej
+          </Button>
+        </div>
+      </form>
+    </div>
   );
 };
 

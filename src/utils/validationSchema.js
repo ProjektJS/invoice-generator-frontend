@@ -1,34 +1,58 @@
 import * as yup from 'yup';
+import { setLocale } from 'yup';
 
-export const validationSchemaCommodity = yup.object().shape({
-  invoiceNumber: yup.string().required(),
-  createDate: yup.date().required(),
-  createPlace: yup.string().required(),
-  sellDate: yup.date().required(),
-  dealer: yup.string().required(),
-  dealerNIP: yup.string().required(),
-  dealerStreet: yup.string().required(),
-  dealerCity: yup.string().required(),
-  dealerPostCode: yup.string().required(),
+setLocale({
+  mixed: {
+    required: 'Pole wymagane!',
+    notType: 'Nieprawidłowy typ danych!',
+  },
+  number: {
+    default: 'Wymagane cyfry!',
+  },
 });
 
-export const validationSchemaPurchaser = yup.object().shape({
-  purchaserNIP: yup.string().required(),
-  purchaserStreet: yup.string().required(),
-  purchaserCity: yup.string().required(),
-  purchaserPostCode: yup.string().required(),
+export const validationSchemaSeller = yup.object().shape({
+  name: yup.string().required(),
+  nip: yup
+    .string()
+    .matches(/^[0-9]{10}$/, 'Wymagane 10 znaków!')
+    .required(),
+  street: yup.string().required(),
+  city: yup.string().required(),
+  postalCode: yup
+    .string()
+    .matches(/^[0-9]{2}(?:-[0-9]{3})?$/, 'Wymagane 6 znaków!')
+    .required(),
+});
+
+export const validationSchemaClient = yup.object().shape({
+  name: yup.string().required(),
+  nip: yup
+    .string()
+    .matches(/^[0-9]{10}$/, 'Wymagane 10 znaków!')
+    .required(),
+  street: yup.string().required(),
+  city: yup.string().required(),
+  postalCode: yup
+    .string()
+    .matches(/^[0-9]{2}(?:-[0-9]{3})?$/, 'Wymagane 6 znaków!')
+    .required(),
 });
 
 export const validationSchemaItems = yup.object().shape({
   items: yup.array().of(
     yup.object().shape({
-      itemName: yup.string().required(),
-      quantity: yup.string().required(),
-      priceNetto: yup.string().required(),
-      valueNetto: yup.string().required(),
-      VAT: yup.string().required(),
-      amountVAT: yup.string().required(),
-      valueBrutto: yup.string().required(),
+      name: yup.string().required(),
+      quantity: yup.number().required(),
+      unitPrice: yup.number().required(),
+      VAT: yup.number().required(),
     }),
   ),
+});
+
+export const validationSchemaOthers = yup.object().shape({
+  createPlace: yup.string().required(),
+  createDate: yup.string().required(),
+  sellDate: yup.string().required(),
+  number: yup.string().required(),
 });

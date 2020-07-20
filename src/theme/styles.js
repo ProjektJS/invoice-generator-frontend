@@ -13,19 +13,14 @@ export const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     alignItems: 'center',
   },
-  buttonContainer: {
-    display: 'flex',
-    width: '100%',
-    justifyContent: 'flex-end',
-  },
   liContainer: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'flex-start',
   },
-  button: {
-    marginTop: '50px',
-    marginRight: '20px',
+  buttonContainer: {
+    marginTop: theme.spacing(2),
+    marginBottom: theme.spacing(2),
   },
   textField: {
     marginLeft: theme.spacing(1),
@@ -33,13 +28,34 @@ export const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(2),
     width: '75vw',
   },
+  button: {
+    marginTop: theme.spacing(2),
+  },
   menuButton: {
     marginRight: theme.spacing(2),
   },
   title: {
     flexGrow: 1,
+    textDecoration: 'none',
+    color: 'white',
+  },
+  title2: {
+    marginTop: theme.spacing(4),
+    marginBottom: theme.spacing(4),
   },
   img: {
-    width: '200px',
+    height: '60%',
+    maxWidth: '100%',
+  },
+  paper: {
+    padding: theme.spacing(2),
+    width: '80%',
+    minHeight: '90vh',
+  },
+  circularProgress: {
+    position: 'fixed',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
   },
 }));

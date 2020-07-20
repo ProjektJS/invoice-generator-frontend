@@ -1,8 +1,32 @@
-import { ADD_INVOICE_DATA_SUCCESS } from 'data/actions/types';
+import {
+  ADD_SELLER_DATA,
+  ADD_CLIENT_DATA,
+  ADD_ITEMS_DATA,
+  ADD_OTHERS_DATA,
+} from 'data/actions/types';
 
-export const invoiceReducer = (state = {}, action) => {
+const initialState = {
+  seller: {},
+  client: {},
+  items: [],
+  createPlace: '',
+  createDate: '',
+  sellDate: '',
+  number: '',
+};
+
+export const invoiceReducer = (state = initialState, action) => {
   switch (action.type) {
-    case ADD_INVOICE_DATA_SUCCESS: {
+    case ADD_SELLER_DATA: {
+      return { ...state, seller: { ...action.payload } };
+    }
+    case ADD_CLIENT_DATA: {
+      return { ...state, client: { ...action.payload } };
+    }
+    case ADD_ITEMS_DATA: {
+      return { ...state, items: [...action.payload] };
+    }
+    case ADD_OTHERS_DATA: {
       return { ...state, ...action.payload };
     }
     default:

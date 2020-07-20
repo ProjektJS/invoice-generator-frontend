@@ -12,9 +12,6 @@ const LandingPage = () => {
       <div className={classes.pageContainer}>
         <Typography variant="h3" color="initial" align="center">
           Witamy w generatorze faktur!
-          <span role="img" aria-label="welcome">
-            ✋🏻
-          </span>
         </Typography>
         <img src={invoiceImg} alt="invoice" className={classes.img} />
       </div>

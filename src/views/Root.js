@@ -13,15 +13,21 @@ const Root = () => {
           <LandingPage />
         </Route>
         <Route exact path={routes.create}>
-          <Redirect to={routes.commodityStep} />
+          <Redirect to={routes.sellerStep} />
         </Route>
-        <Route path={routes.commodityStep}>
+        <Route path={routes.sellerStep}>
           <CreateInvoicePage />
         </Route>
-        <Route path={routes.purchaserStep}>
+        <Route path={routes.clientStep}>
           <CreateInvoicePage />
         </Route>
         <Route path={routes.itemsStep}>
+          <CreateInvoicePage />
+        </Route>
+        <Route path={routes.othersStep}>
+          <CreateInvoicePage />
+        </Route>
+        <Route path={routes.finishStep}>
           <CreateInvoicePage />
         </Route>
         <Route path="*">
