@@ -22,6 +22,11 @@ export const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(2),
     marginBottom: theme.spacing(2),
   },
+  stepperContainer: {
+    padding: '0',
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
   textField: {
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
@@ -57,5 +62,9 @@ export const useStyles = makeStyles((theme) => ({
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
+  },
+  iframe: {
+    width: '75%',
+    height: '80vh',
   },
 }));

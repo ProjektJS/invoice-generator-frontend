@@ -1,6 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Button from '@material-ui/core/Button';
 import { useStyles } from 'theme/styles';
 import StepperBar from 'components/StepperBar';
@@ -17,11 +17,17 @@ const FinishStep = () => {
     dispatch(addInvoiceData());
   };
 
+  const fileSrc = useSelector((state) => state.file.fileSrc);
+
   return (
     <div>
       <StepperBar activeStep={4} />
       <div className={classes.formContainer}>
-        <InvoicePaper />
+        {fileSrc ? (
+          <iframe className={classes.iframe} title="invoice" src={fileSrc} />
+        ) : (
+          <InvoicePaper />
+        )}
         <div className={classes.buttonContainer}>
           <Button
             className={classes.button}

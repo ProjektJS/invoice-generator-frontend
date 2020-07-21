@@ -24,9 +24,11 @@ export const addInvoiceData = () => (dispatch, getState) => {
       const res = await axios.post(`${process.env.REACT_APP_API_URL}/invoice`, { ...invoice });
 
       if (res) {
-        dispatch({ type: ADD_INVOICE_DATA_SUCCESS });
+        dispatch({
+          type: ADD_INVOICE_DATA_SUCCESS,
+          payload: { fileSrc: `data:application/pdf;base64,${res.data}` },
+        });
       }
-      console.log(res);
     } catch (error) {
       dispatch({ type: ADD_INVOICE_DATA_FAILURE, error });
     }
