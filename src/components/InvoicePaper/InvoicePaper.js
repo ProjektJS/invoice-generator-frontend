@@ -33,37 +33,37 @@ const InvoicePaper = () => {
         Sprzedawca
       </Typography>
       <Typography variant="subtitle1" color="textPrimary">
-        Sprzedawca: {invoice?.seller?.name}
+        Sprzedawca: {invoice?.persons?.sellerName}
       </Typography>
       <Typography variant="subtitle1" color="textPrimary">
-        NIP: {invoice?.seller?.nip}
+        NIP: {invoice?.persons?.sellerNip}
       </Typography>
       <Typography variant="subtitle1" color="textPrimary">
-        Ulica: {invoice?.seller?.street}
+        Ulica: {invoice?.persons?.sellerStreet}
       </Typography>
       <Typography variant="subtitle1" color="textPrimary">
-        Miasto: {invoice?.seller?.city}
+        Miasto: {invoice?.persons?.sellerCity}
       </Typography>
       <Typography variant="subtitle1" color="textPrimary">
-        Kod pocztowy: {invoice?.seller?.postalCode}
+        Kod pocztowy: {invoice?.persons?.sellerPostalCode}
       </Typography>
       <Typography variant="h5" component="h2" className={classes.title2}>
         Nabywca
       </Typography>
       <Typography variant="subtitle1" color="textPrimary">
-        Nabywca: {invoice?.seller?.name}
+        Nabywca: {invoice?.persons?.clientName}
       </Typography>
       <Typography variant="subtitle1" color="textPrimary">
-        NIP: {invoice?.client?.nip}
+        NIP: {invoice?.persons?.clientNip}
       </Typography>
       <Typography variant="subtitle1" color="textPrimary">
-        Ulica: {invoice?.client?.street}
+        Ulica: {invoice?.persons?.clientStreet}
       </Typography>
       <Typography variant="subtitle1" color="textPrimary">
-        Miasto: {invoice?.client?.city}
+        Miasto: {invoice?.persons?.clientCity}
       </Typography>
       <Typography variant="subtitle1" color="textPrimary">
-        Kod pocztowy: {invoice?.client?.postalCode}
+        Kod pocztowy: {invoice?.persons?.clientPostalCode}
       </Typography>
       {invoice.items.map((item, index) => (
         <ul key={item.name}>

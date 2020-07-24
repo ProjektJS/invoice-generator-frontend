@@ -1,5 +1,4 @@
-export const ADD_SELLER_DATA = 'ADD_SELLER_DATA';
-export const ADD_CLIENT_DATA = 'ADD_CLIENT_DATA';
+export const ADD_PERSONS_DATA = 'ADD_PERSONS_DATA';
 export const ADD_ITEMS_DATA = 'ADD_ITEMS_DATA';
 export const ADD_OTHERS_DATA = 'ADD_OTHERS_DATA';
 

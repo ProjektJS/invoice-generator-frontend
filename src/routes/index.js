@@ -1,9 +1,8 @@
 export const routes = {
   home: '/',
   create: '/create',
-  sellerStep: '/create/1',
-  clientStep: '/create/2',
-  itemsStep: '/create/3',
-  othersStep: '/create/4',
-  finishStep: '/create/5',
+  personsStep: '/create/1',
+  itemsStep: '/create/2',
+  othersStep: '/create/3',
+  finishStep: '/create/4',
 };

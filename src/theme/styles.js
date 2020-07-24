@@ -9,11 +9,32 @@ export const useStyles = makeStyles((theme) => ({
     height: '90vh',
   },
   formContainer: {
+    padding: theme.spacing(2),
+    width: '100%',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
   },
+  innerFormContainer: {
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'space-around',
+    flexWrap: 'wrap',
+  },
+  fields: {
+    width: '450px',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  ulContainer: {
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'center',
+    flexWrap: 'wrap',
+  },
   liContainer: {
+    width: '350px',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'flex-start',
@@ -31,7 +52,7 @@ export const useStyles = makeStyles((theme) => ({
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
     marginTop: theme.spacing(2),
-    width: '75vw',
+    width: '95%',
   },
   button: {
     marginTop: theme.spacing(2),
@@ -44,7 +65,7 @@ export const useStyles = makeStyles((theme) => ({
     textDecoration: 'none',
     color: 'white',
   },
-  title2: {
+  innerTitle: {
     marginTop: theme.spacing(4),
     marginBottom: theme.spacing(4),
   },

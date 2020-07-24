@@ -1,13 +1,7 @@
-import {
-  ADD_SELLER_DATA,
-  ADD_CLIENT_DATA,
-  ADD_ITEMS_DATA,
-  ADD_OTHERS_DATA,
-} from 'data/actions/types';
+import { ADD_PERSONS_DATA, ADD_ITEMS_DATA, ADD_OTHERS_DATA } from 'data/actions/types';
 
 const initialState = {
-  seller: {},
-  client: {},
+  persons: [],
   items: [],
   createPlace: '',
   createDate: '',
@@ -17,11 +11,8 @@ const initialState = {
 
 export const invoiceReducer = (state = initialState, action) => {
   switch (action.type) {
-    case ADD_SELLER_DATA: {
-      return { ...state, seller: { ...action.payload } };
-    }
-    case ADD_CLIENT_DATA: {
-      return { ...state, client: { ...action.payload } };
+    case ADD_PERSONS_DATA: {
+      return { ...state, persons: { ...action.payload } };
     }
     case ADD_ITEMS_DATA: {
       return { ...state, items: [...action.payload] };

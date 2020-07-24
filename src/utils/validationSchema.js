@@ -11,15 +11,26 @@ setLocale({
   },
 });
 
-export const validationSchemaSeller = yup.object().shape({
-  name: yup.string().required(),
-  nip: yup
+export const validationSchemaPersons = yup.object().shape({
+  sellerName: yup.string().required(),
+  sellerNip: yup
     .string()
     .matches(/^[0-9]{10}$/, 'Wymagane 10 znaków!')
     .required(),
-  street: yup.string().required(),
-  city: yup.string().required(),
-  postalCode: yup
+  sellerStreet: yup.string().required(),
+  sellerCity: yup.string().required(),
+  sellerPostalCode: yup
+    .string()
+    .matches(/^[0-9]{2}(?:-[0-9]{3})?$/, 'Wymagane 6 znaków!')
+    .required(),
+  clientName: yup.string().required(),
+  clientNip: yup
+    .string()
+    .matches(/^[0-9]{10}$/, 'Wymagane 10 znaków!')
+    .required(),
+  clientStreet: yup.string().required(),
+  clientCity: yup.string().required(),
+  clientPostalCode: yup
     .string()
     .matches(/^[0-9]{2}(?:-[0-9]{3})?$/, 'Wymagane 6 znaków!')
     .required(),

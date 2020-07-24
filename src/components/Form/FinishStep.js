@@ -21,7 +21,7 @@ const FinishStep = () => {
 
   return (
     <div>
-      <StepperBar activeStep={4} />
+      <StepperBar activeStep={3} />
       <div className={classes.formContainer}>
         {fileSrc ? (
           <iframe className={classes.iframe} title="invoice" src={fileSrc} />

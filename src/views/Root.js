@@ -13,12 +13,9 @@ const Root = () => {
           <LandingPage />
         </Route>
         <Route exact path={routes.create}>
-          <Redirect to={routes.sellerStep} />
+          <Redirect to={routes.personsStep} />
         </Route>
-        <Route path={routes.sellerStep}>
-          <CreateInvoicePage />
-        </Route>
-        <Route path={routes.clientStep}>
+        <Route path={routes.personsStep}>
           <CreateInvoicePage />
         </Route>
         <Route path={routes.itemsStep}>

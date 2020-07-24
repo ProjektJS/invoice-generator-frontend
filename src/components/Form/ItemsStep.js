@@ -5,6 +5,7 @@ import { useForm, useFieldArray } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import StepperBar from 'components/StepperBar';
@@ -34,9 +35,12 @@ const ItemStep = () => {
 
   return (
     <div>
-      <StepperBar activeStep={2} />
+      <StepperBar activeStep={1} />
       <form position="static" className={classes.formContainer} onSubmit={handleSubmit(onSubmit)}>
-        <ul>
+        <Typography variant="h4" component="h1">
+          Towary/Usługi:
+        </Typography>
+        <ul className={classes.ulContainer}>
           {fields.map((item, index) => {
             return (
               <li key={item.id} className={classes.liContainer}>
@@ -106,7 +110,7 @@ const ItemStep = () => {
             className={classes.button}
             variant="contained"
             color="secondary"
-            onClick={() => history.push(routes.clientStep)}
+            onClick={() => history.push(routes.personsStep)}
           >
             Cofnij
           </Button>

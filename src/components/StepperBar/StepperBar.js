@@ -8,8 +8,7 @@ import { useStyles } from 'theme/styles';
 const StepperBar = ({ activeStep }) => {
   const classes = useStyles();
   const steps = [
-    'Dane sprzedawcy',
-    'Dane nabywcy',
+    'Dane sprzedawcy/nabywcy',
     'Zakupione towary/usługi',
     'Pozostałe informacje',
     'Tworzenie faktury',
