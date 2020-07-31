@@ -15,7 +15,6 @@ const NavBar = () => {
       <AppBar position="static">
         <Toolbar>
           <MenuList />
-
           <Typography
             variant="h6"
             align="right"

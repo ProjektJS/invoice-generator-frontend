@@ -1,4 +1,3 @@
-export { default as PersonsStep } from './PersonsStep';
-export { default as ItemsStep } from './ItemsStep';
-export { default as OthersStep } from './OthersStep';
-export { default as FinishStep } from './FinishStep';
+export { default as Form } from './Form';
+export { default as Fields } from './Fields';
+export { default as MultiFields } from './MultiFields';

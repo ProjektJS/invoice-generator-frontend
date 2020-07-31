@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Container from '@material-ui/core/Container';
-import { NavBar } from 'components';
+import NavBar from 'components/NavBar';
 
 const UserPageTemplate = ({ children }) => {
   return (
