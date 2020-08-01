@@ -20,7 +20,8 @@
       {
         "extensions": [".js"]
       }
-    ]
+    ],
+    "consistent-return": 0
   },
   "settings": {
     "import/resolver": {

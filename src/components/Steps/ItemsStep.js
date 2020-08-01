@@ -1,5 +1,5 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm, useFieldArray } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers';
@@ -15,9 +15,18 @@ const ItemStep = () => {
   const history = useHistory();
   const dispatch = useDispatch();
 
+  const items = useSelector((state) => state.invoice.items);
+  const persons = useSelector((state) => state.invoice.persons);
+
+  const defaultValues = {
+    items: items.length !== 0 ? items : [{ name: '', quantity: '', unitPrice: '', VAT: '' }],
+  };
+
   const { register, control, handleSubmit, errors } = useForm({
+    defaultValues,
     resolver: yupResolver(validationSchemaItems),
   });
+
   const { fields, append, remove } = useFieldArray({
     control,
     name: 'items',
@@ -28,7 +37,9 @@ const ItemStep = () => {
     history.push(routes.othersStep);
   };
 
-  const items = useSelector((state) => state.invoice.items);
+  if (Object.entries(persons).length === 0) {
+    return <Redirect to={routes.personsStep} />;
+  }
 
   return (
     <Form

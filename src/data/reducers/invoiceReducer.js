@@ -1,7 +1,7 @@
 import { ADD_PERSONS_DATA, ADD_ITEMS_DATA, ADD_OTHERS_DATA } from 'data/actions/types';
 
 const initialState = {
-  persons: [],
+  persons: {},
   items: [],
   createPlace: '',
   createDate: '',

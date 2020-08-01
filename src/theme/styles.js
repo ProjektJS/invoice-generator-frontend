@@ -1,6 +1,9 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 export const useStyles = makeStyles((theme) => ({
+  mainContainer: {
+    marginTop: theme.spacing(8),
+  },
   pageContainer: {
     display: 'flex',
     flexDirection: 'column',
@@ -8,14 +11,9 @@ export const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-around',
     height: '90vh',
   },
-
-  innerFormContainer: {
-    width: '100%',
-    display: 'flex',
-    justifyContent: 'space-around',
-    flexWrap: 'wrap',
+  fieldsContainer: {
+    minHeight: '55vh',
   },
-
   stepperContainer: {
     padding: '0',
     display: 'flex',

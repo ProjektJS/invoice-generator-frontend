@@ -5,9 +5,11 @@ import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import StepperBar from 'components/StepperBar';
+import { useStyles } from 'theme/styles';
 
 const Form = ({ children, activeStep, handleSubmit, onSubmit, previousStep }) => {
   const history = useHistory();
+  const classes = useStyles();
 
   return (
     <Container maxWidth="lg">
@@ -18,22 +20,22 @@ const Form = ({ children, activeStep, handleSubmit, onSubmit, previousStep }) =>
         <Grid container item xs={9}>
           <form onSubmit={handleSubmit(onSubmit)}>
             <Grid container xs={12} spacing={2}>
-              <Grid item xs={12}>
+              <Grid item xs={12} className={classes.fieldsContainer}>
                 {children}
               </Grid>
-              <Grid item xs={12}>
-                {activeStep > 0 && (
-                  <Button
-                    variant="contained"
-                    color="secondary"
-                    onClick={() => history.push(previousStep)}
-                  >
-                    Cofnij
+              <Grid item container xs={12}>
+                <Grid item>
+                  {activeStep > 0 && (
+                    <Button variant="outlined" onClick={() => history.push(previousStep)}>
+                      Cofnij
+                    </Button>
+                  )}
+                </Grid>
+                <Grid item>
+                  <Button type="submit" variant="contained" color="primary">
+                    Dalej
                   </Button>
-                )}
-                <Button type="submit" variant="contained" color="primary">
-                  Dalej
-                </Button>
+                </Grid>
               </Grid>
             </Grid>
           </form>

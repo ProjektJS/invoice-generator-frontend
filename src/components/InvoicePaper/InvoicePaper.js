@@ -11,10 +11,7 @@ const InvoicePaper = () => {
 
   return (
     <Paper elevation={3} className={classes.paper}>
-      <Typography variant="h4" align="center" component="h1" className={classes.title2}>
-        Podgląd danych
-      </Typography>
-      <Typography variant="h5" component="h2" className={classes.title2}>
+      <Typography variant="h6" component="h2" align="center">
         Dane faktury
       </Typography>
       <Typography variant="subtitle1" color="textPrimary">
@@ -29,7 +26,7 @@ const InvoicePaper = () => {
       <Typography variant="subtitle1" color="textPrimary">
         Data sprzedaży: {invoice?.sellDate}
       </Typography>
-      <Typography variant="h5" component="h2" className={classes.title2}>
+      <Typography variant="h6" component="h2" align="center">
         Sprzedawca
       </Typography>
       <Typography variant="subtitle1" color="textPrimary">
@@ -47,7 +44,7 @@ const InvoicePaper = () => {
       <Typography variant="subtitle1" color="textPrimary">
         Kod pocztowy: {invoice?.persons?.sellerPostalCode}
       </Typography>
-      <Typography variant="h5" component="h2" className={classes.title2}>
+      <Typography variant="h6" component="h2" align="center">
         Nabywca
       </Typography>
       <Typography variant="subtitle1" color="textPrimary">
@@ -65,35 +62,56 @@ const InvoicePaper = () => {
       <Typography variant="subtitle1" color="textPrimary">
         Kod pocztowy: {invoice?.persons?.clientPostalCode}
       </Typography>
-      {invoice.items.map((item, index) => (
-        <ul key={item.name}>
-          <li>
-            <Typography variant="h5" component="h2" className={classes.title2}>
-              Towar/Usługa nr.{index + 1}
-            </Typography>
-          </li>
-          <li>
-            <Typography vriant="subtitle1" color="textPraimary">
-              Nazwa: {item?.name}
-            </Typography>
-          </li>
-          <li>
-            <Typography variant="subtitle1" color="textPrimary">
-              Ilość: {item?.quantity}
-            </Typography>
-          </li>
-          <li>
-            <Typography variant="subtitle1" color="textPrimary">
-              Cena jednostkowa: {item?.unitPrice}
-            </Typography>
-          </li>
-          <li>
-            <Typography variant="subtitle1" color="textPrimary">
-              VAT: {item.VAT}%
-            </Typography>
-          </li>
-        </ul>
-      ))}
+      {invoice.items.map((item, index) => {
+        const priceNetto = item.unitPrice * item.quantity;
+        const valueTax = priceNetto * (item.VAT / 100);
+        const priceBrutto = priceNetto + valueTax;
+
+        return (
+          <ul key={item.name}>
+            <li>
+              <Typography variant="h6" component="h2" align="center">
+                Towar/Usługa nr.{index + 1}
+              </Typography>
+            </li>
+            <li>
+              <Typography vriant="subtitle1" color="textPraimary">
+                Nazwa: {item?.name}
+              </Typography>
+            </li>
+            <li>
+              <Typography variant="subtitle1" color="textPrimary">
+                Ilość: {item?.quantity}
+              </Typography>
+            </li>
+            <li>
+              <Typography variant="subtitle1" color="textPrimary">
+                Cena jednostkowa: {item?.unitPrice}PLN
+              </Typography>
+            </li>
+            <li>
+              <Typography variant="subtitle1" color="textPrimary">
+                VAT: {item.VAT}%
+              </Typography>
+            </li>
+            <li>
+              <Typography variant="subtitle1" color="textPrimary">
+                Netto: {priceNetto}PLN
+              </Typography>
+            </li>
+            <li>
+              <Typography variant="subtitle1" color="textPrimary">
+                Wartość podatku: {valueTax}PLN
+              </Typography>
+            </li>
+            <li>
+              <Typography variant="subtitle1" color="textPrimary">
+                Brutto: {priceBrutto}PLN
+              </Typography>
+            </li>
+          </ul>
+        );
+      })}
     </Paper>
   );
 };

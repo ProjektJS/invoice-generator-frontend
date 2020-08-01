@@ -1,7 +1,7 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Redirect } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers';
 import Typography from '@material-ui/core/Typography';
 import { validationSchemaOthers } from 'utils/validationSchema';
@@ -29,6 +29,10 @@ const OthersStep = () => {
   };
 
   const invoice = useSelector((state) => state.invoice);
+
+  if (invoice.items.length === 0) {
+    return <Redirect to={routes.itemsStep} />;
+  }
 
   return (
     <Form
