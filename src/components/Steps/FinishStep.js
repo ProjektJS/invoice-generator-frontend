@@ -1,20 +1,72 @@
 import React from 'react';
 import { useHistory, Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import styled from 'styled-components';
 import { Container } from '@material-ui/core';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import { useStyles } from 'theme/styles';
+import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import StepperBar from 'components/StepperBar';
 import { routes } from 'routes';
 import InvoicePaper from 'components/InvoicePaper';
 import { addInvoiceData } from 'data/actions';
+import { useDeviceScreenContext } from 'context';
+
+const StyledContainer = styled(Container)`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const StyledButtonWrapper = styled.div`
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  background-color: white;
+
+  @media (min-width: 768px) {
+    position: static;
+    width: 85%;
+    display: flex;
+    justify-content: flex-end;
+  }
+`;
+
+const StyledIframe = styled.iframe`
+  width: 100vw;
+  height: 65vh;
+  @media (min-width: 768px) {
+    width: 595px;
+  }
+`;
+
+const StyledInvoiceWrapper = styled.div`
+  margin: 16px 0;
+  min-height: 85vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @media (min-width: 768px) {
+    width: 595px;
+    min-height: 75vh;
+  }
+`;
+
+const StyledButton = styled(Button)`
+  width: 50%;
+
+  @media (min-width: 768px) {
+    width: auto;
+  }
+`;
 
 const FinishStep = () => {
-  const classes = useStyles();
   const history = useHistory();
   const dispatch = useDispatch();
+  const { isTablet } = useDeviceScreenContext();
 
   const handleInvoiceGenerate = () => {
     dispatch(addInvoiceData());
@@ -33,44 +85,49 @@ const FinishStep = () => {
   }
 
   return (
-    <Container maxWidth="lg">
-      <Grid container direction="column" alignItems="center" spacing={2} xs={12}>
-        <Grid item xs={12}>
-          <StepperBar activeStep={3} />
-        </Grid>
-        <Grid container item xs={9} spacing={2}>
-          <Grid item>
-            <Typography variant="h5" component="h1" color="initial">
-              Podgląd danych
-            </Typography>
-          </Grid>
-          <Grid container item xs={12}>
-            {fileSrc ? (
-              <iframe className={classes.iframe} title="invoice" src={fileSrc} />
-            ) : (
-              <InvoicePaper />
-            )}
-          </Grid>
-          <Grid item xs={12}>
-            <Button
-              className={classes.button}
-              variant="outlined"
+    <StyledContainer maxWidth="lg">
+      <StepperBar activeStep={3} />
+      {fileSrc ? (
+        <StyledInvoiceWrapper>
+          <StyledIframe title="invoice" src={fileSrc} />
+          <StyledButtonWrapper>
+            <StyledButton
+              variant={isTablet ? 'outlined' : 'text'}
               onClick={() => history.push(routes.othersStep)}
             >
+              <KeyboardArrowLeft />
               Cofnij
-            </Button>
-            <Button
-              className={classes.button}
-              variant="contained"
-              color="primary"
+            </StyledButton>
+            <StyledButton
+              variant={isTablet ? 'contained' : 'text'}
+              color={isTablet ? 'primary' : 'default'}
               onClick={handleInvoiceGenerate}
             >
               Generuj fakturę
-            </Button>
-          </Grid>
-        </Grid>
-      </Grid>
-    </Container>
+            </StyledButton>
+          </StyledButtonWrapper>
+        </StyledInvoiceWrapper>
+      ) : (
+        <InvoicePaper>
+          <StyledButtonWrapper>
+            <StyledButton
+              variant={isTablet ? 'outlined' : 'text'}
+              onClick={() => history.push(routes.othersStep)}
+            >
+              Cofnij
+              <KeyboardArrowLeft />
+            </StyledButton>
+            <StyledButton
+              variant={isTablet ? 'contained' : 'text'}
+              color={isTablet ? 'primary' : 'default'}
+              onClick={handleInvoiceGenerate}
+            >
+              Generuj fakturę
+            </StyledButton>
+          </StyledButtonWrapper>
+        </InvoicePaper>
+      )}
+    </StyledContainer>
   );
 };
 

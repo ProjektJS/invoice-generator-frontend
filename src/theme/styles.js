@@ -12,7 +12,9 @@ export const useStyles = makeStyles((theme) => ({
     height: '90vh',
   },
   fieldsContainer: {
-    minHeight: '55vh',
+    paddingTop: theme.spacing(2),
+    paddingBottom: theme.spacing(2),
+    minHeight: '65vh',
   },
   stepperContainer: {
     padding: '0',

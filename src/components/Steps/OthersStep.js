@@ -1,5 +1,6 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, Redirect } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers';
@@ -8,6 +9,17 @@ import { validationSchemaOthers } from 'utils/validationSchema';
 import { addOthersData } from 'data/actions';
 import { Form, Fields } from 'components/Form';
 import { routes } from 'routes';
+
+const StyledTitle = styled(Typography)`
+  margin-bottom: 20px;
+`;
+
+const StyledWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 20px;
+`;
 
 const OthersStep = () => {
   const history = useHistory();
@@ -41,10 +53,12 @@ const OthersStep = () => {
       handleSubmit={handleSubmit}
       onSubmit={onSubmit}
     >
-      <Typography variant="h5" component="h1" color="initial">
-        Dane faktury
-      </Typography>
-      <Fields fields={fields} inputRef={register} errors={errors} state={invoice} />
+      <StyledWrapper>
+        <StyledTitle variant="h5" component="h1" color="initial">
+          Dane faktury
+        </StyledTitle>
+        <Fields fields={fields} inputRef={register} errors={errors} state={invoice} />
+      </StyledWrapper>
     </Form>
   );
 };

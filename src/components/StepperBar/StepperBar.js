@@ -1,17 +1,31 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import Container from '@material-ui/core/Container';
 import Stepper from '@material-ui/core/Stepper';
+import MobileStepper from '@material-ui/core/MobileStepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
-import { useStyles } from 'theme/styles';
+import { useDeviceScreenContext } from 'context';
 import { routes } from 'routes';
 
+const StyledStepper = styled(Stepper)`
+  margin-top: 48px;
+  display: flex;
+  flex-wrap: wrap;
+`;
+
+const StyledMobileStepper = styled(MobileStepper)`
+  @media (min-width: 768px) {
+    margin-top: 18px;
+  }
+`;
+
 const StepperBar = ({ activeStep }) => {
-  const classes = useStyles();
   const history = useHistory();
+
+  const { isDesktop } = useDeviceScreenContext();
 
   const steps = [
     { label: 'Dane sprzedawcy/nabywcy', path: routes.personsStep },
@@ -60,15 +74,29 @@ const StepperBar = ({ activeStep }) => {
   };
 
   return (
-    <Container>
-      <Stepper activeStep={activeStep} className={classes.stepperContainer}>
-        {steps.map(({ label, path }) => (
-          <Step key={label} onClick={() => handleClickLabel(path)}>
-            <StepLabel>{label}</StepLabel>
+    <>
+      {isDesktop ? (
+        <StyledStepper activeStep={activeStep}>
+          {steps.map(({ label, path }) => (
+            <Step key={label} onClick={() => handleClickLabel(path)}>
+              <StepLabel>{label}</StepLabel>
+            </Step>
+          ))}
+        </StyledStepper>
+      ) : (
+        <>
+          <StyledMobileStepper
+            variant="dots"
+            steps={steps.length}
+            position="static"
+            activeStep={activeStep}
+          />
+          <Step key={activeStep}>
+            <StepLabel>{steps[activeStep].label}</StepLabel>
           </Step>
-        ))}
-      </Stepper>
-    </Container>
+        </>
+      )}
+    </>
   );
 };
 

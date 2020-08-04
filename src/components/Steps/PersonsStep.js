@@ -2,14 +2,28 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import styled from 'styled-components';
 import { yupResolver } from '@hookform/resolvers';
-import Grid from '@material-ui/core/Grid';
 import { validationSchemaPersons } from 'utils/validationSchema';
 import { addPersonsData } from 'data/actions';
 import { routes } from 'routes';
 import { Typography } from '@material-ui/core';
 import Fields from '../Form/Fields';
 import Form from '../Form/Form';
+
+const StyledWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const InnerWrapper = styled.div`
+  margin-bottom: 20px;
+`;
+
+const StyledTitle = styled(Typography)`
+  margin-bottom: 5px;
+`;
 
 const PersonsStep = () => {
   const history = useHistory();
@@ -44,20 +58,20 @@ const PersonsStep = () => {
 
   return (
     <Form activeStep={0} handleSubmit={handleSubmit} onSubmit={onSubmit}>
-      <Grid container xs={12} spacing={3}>
-        <Grid item xs={12} sm={6}>
-          <Typography variant="h5" component="h1" color="initial">
+      <StyledWrapper>
+        <InnerWrapper>
+          <StyledTitle variant="h5" component="h1" color="initial" align="left">
             Dane sprzedawcy
-          </Typography>
+          </StyledTitle>
           <Fields fields={sellerFields} inputRef={register} errors={errors} state={persons} />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <Typography variant="h5" component="h1" color="initial">
-            Dane Nabywcy
-          </Typography>
+        </InnerWrapper>
+        <InnerWrapper>
+          <StyledTitle variant="h5" component="h1" color="initial" align="left">
+            Dane nabywcy
+          </StyledTitle>
           <Fields fields={clientFields} inputRef={register} errors={errors} state={persons} />
-        </Grid>
-      </Grid>
+        </InnerWrapper>
+      </StyledWrapper>
     </Form>
   );
 };

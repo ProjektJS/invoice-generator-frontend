@@ -1,15 +1,19 @@
 import React from 'react';
 import { useHistory, Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import styled from 'styled-components';
 import { useForm, useFieldArray } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers';
-import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { validationSchemaItems } from 'utils/validationSchema';
 import { addItemsData } from 'data/actions';
 import { routes } from 'routes';
 import { Form, MultiFields } from 'components/Form';
+
+const StyledTitle = styled(Typography)`
+  margin-bottom: 20px;
+`;
 
 const ItemStep = () => {
   const history = useHistory();
@@ -19,7 +23,7 @@ const ItemStep = () => {
   const persons = useSelector((state) => state.invoice.persons);
 
   const defaultValues = {
-    items: items.length !== 0 ? items : [{ name: '', quantity: '', unitPrice: '', VAT: '' }],
+    items: items.length !== 0 ? items : [{ name: '', quantity: '', unitPrice: '', VAT: '23' }],
   };
 
   const { register, control, handleSubmit, errors } = useForm({
@@ -48,31 +52,29 @@ const ItemStep = () => {
       handleSubmit={handleSubmit}
       onSubmit={onSubmit}
     >
-      <Grid container xs={12}>
-        <Typography variant="h5" component="h1" color="initial">
-          Zakupione towary/usługi
-        </Typography>
-        <MultiFields
-          fields={fields}
-          errors={errors}
-          inputRef={register()}
-          remove={remove}
-          items={items}
-        />
-        <Button
-          variant="secondary"
-          onClick={() => {
-            append({
-              name: '',
-              quantity: '',
-              unitPrice: '',
-              VAT: '',
-            });
-          }}
-        >
-          Dodaj nowy towar/usługę
-        </Button>
-      </Grid>
+      <StyledTitle variant="h5" component="h1" color="initial">
+        Zakupione towary/usługi
+      </StyledTitle>
+      <MultiFields
+        fields={fields}
+        errors={errors}
+        inputRef={register()}
+        remove={remove}
+        items={items}
+      />
+      <Button
+        variant="secondary"
+        onClick={() => {
+          append({
+            name: '',
+            quantity: '',
+            unitPrice: '',
+            VAT: '',
+          });
+        }}
+      >
+        + dodaj
+      </Button>
     </Form>
   );
 };

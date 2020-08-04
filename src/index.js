@@ -1,15 +1,23 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import 'index.css';
 import Root from 'views/Root';
+import DeviceScreen from 'context';
 import { store } from 'data/store';
 
-ReactDOM.render(
-  <React.StrictMode>
+const renderApp = () =>
+  render(
     <Provider store={store}>
-      <Root />
-    </Provider>
-  </React.StrictMode>,
-  document.getElementById('root'),
-);
+      <DeviceScreen>
+        <Root />
+      </DeviceScreen>
+    </Provider>,
+    document.getElementById('root'),
+  );
+
+if (process.env.NODE_ENV !== 'production' && module.hot) {
+  module.hot.accept('../src/views/Root.js', renderApp);
+}
+
+renderApp();
