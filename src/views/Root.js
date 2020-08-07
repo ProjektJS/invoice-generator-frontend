@@ -1,35 +1,19 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+import { LandingPage, ErrorPage, CreateInvoicePage } from 'views';
 import { routes } from 'routes';
-import CreateInvoicePage from 'views/CreateInvoicePage';
-import LandingPage from './LandingPage';
-import ErrorNotFoundPage from './404';
 
 const Root = () => {
   return (
     <Router>
       <Switch>
-        <Route exact path={routes.home}>
-          <LandingPage />
-        </Route>
-        <Route exact path={routes.create}>
-          <Redirect to={routes.personsStep} />
-        </Route>
-        <Route path={routes.personsStep}>
-          <CreateInvoicePage />
-        </Route>
-        <Route path={routes.itemsStep}>
-          <CreateInvoicePage />
-        </Route>
-        <Route path={routes.othersStep}>
-          <CreateInvoicePage />
-        </Route>
-        <Route path={routes.finishStep}>
-          <CreateInvoicePage />
-        </Route>
-        <Route path="*">
-          <ErrorNotFoundPage />
-        </Route>
+        <Route exact path={routes.home} component={LandingPage} />
+        <Route exact path={routes.create} render={() => <Redirect to={routes.personsStep} />} />
+        <Route path={routes.personsStep} component={CreateInvoicePage} />
+        <Route path={routes.itemsStep} component={CreateInvoicePage} />
+        <Route path={routes.othersStep} component={CreateInvoicePage} />
+        <Route path={routes.finishStep} component={CreateInvoicePage} />
+        <Route path="*" component={ErrorPage} />
       </Switch>
     </Router>
   );

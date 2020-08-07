@@ -17,9 +17,7 @@ const StyledStepper = styled(Stepper)`
 `;
 
 const StyledMobileStepper = styled(MobileStepper)`
-  @media (min-width: 768px) {
-    margin-top: 18px;
-  }
+  margin-top: 18px;
 `;
 
 const StepperBar = ({ activeStep }) => {

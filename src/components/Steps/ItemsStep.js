@@ -6,9 +6,10 @@ import { useForm, useFieldArray } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import { validationSchemaItems } from 'utils/validationSchema';
+import { validationSchemaItems } from 'utils/validationSchemas';
 import { addItemsData } from 'data/actions';
 import { routes } from 'routes';
+import { StepTemplate } from 'templates';
 import { Form, MultiFields } from 'components/Form';
 
 const StyledTitle = styled(Typography)`
@@ -46,36 +47,38 @@ const ItemStep = () => {
   }
 
   return (
-    <Form
-      activeStep={1}
-      previousStep={routes.personsStep}
-      handleSubmit={handleSubmit}
-      onSubmit={onSubmit}
-    >
-      <StyledTitle variant="h5" component="h1" color="initial">
-        Zakupione towary/usługi
-      </StyledTitle>
-      <MultiFields
-        fields={fields}
-        errors={errors}
-        inputRef={register()}
-        remove={remove}
-        items={items}
-      />
-      <Button
-        variant="secondary"
-        onClick={() => {
-          append({
-            name: '',
-            quantity: '',
-            unitPrice: '',
-            VAT: '',
-          });
-        }}
+    <StepTemplate activeStep={1}>
+      <Form
+        activeStep={1}
+        previousStepRoute={routes.personsStep}
+        handleSubmit={handleSubmit}
+        onSubmit={onSubmit}
       >
-        + dodaj
-      </Button>
-    </Form>
+        <StyledTitle variant="h5" component="h1" color="initial">
+          Zakupione towary/usługi
+        </StyledTitle>
+        <MultiFields
+          fields={fields}
+          errors={errors}
+          inputRef={register()}
+          remove={remove}
+          items={items}
+        />
+        <Button
+          variant="secondary"
+          onClick={() => {
+            append({
+              name: '',
+              quantity: '',
+              unitPrice: '',
+              VAT: '',
+            });
+          }}
+        >
+          + dodaj
+        </Button>
+      </Form>
+    </StepTemplate>
   );
 };
 

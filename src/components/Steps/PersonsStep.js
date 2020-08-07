@@ -4,10 +4,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import { yupResolver } from '@hookform/resolvers';
-import { validationSchemaPersons } from 'utils/validationSchema';
+import { validationSchemaPersons } from 'utils/validationSchemas';
 import { addPersonsData } from 'data/actions';
 import { routes } from 'routes';
 import { Typography } from '@material-ui/core';
+import { StepTemplate } from 'templates';
 import Fields from '../Form/Fields';
 import Form from '../Form/Form';
 
@@ -57,22 +58,24 @@ const PersonsStep = () => {
   const persons = useSelector((state) => state.invoice.persons);
 
   return (
-    <Form activeStep={0} handleSubmit={handleSubmit} onSubmit={onSubmit}>
-      <StyledWrapper>
-        <InnerWrapper>
-          <StyledTitle variant="h5" component="h1" color="initial" align="left">
-            Dane sprzedawcy
-          </StyledTitle>
-          <Fields fields={sellerFields} inputRef={register} errors={errors} state={persons} />
-        </InnerWrapper>
-        <InnerWrapper>
-          <StyledTitle variant="h5" component="h1" color="initial" align="left">
-            Dane nabywcy
-          </StyledTitle>
-          <Fields fields={clientFields} inputRef={register} errors={errors} state={persons} />
-        </InnerWrapper>
-      </StyledWrapper>
-    </Form>
+    <StepTemplate activeStep={0}>
+      <Form activeStep={0} handleSubmit={handleSubmit} onSubmit={onSubmit}>
+        <StyledWrapper>
+          <InnerWrapper>
+            <StyledTitle variant="h5" component="h1" color="initial" align="left">
+              Dane sprzedawcy
+            </StyledTitle>
+            <Fields fields={sellerFields} inputRef={register} errors={errors} state={persons} />
+          </InnerWrapper>
+          <InnerWrapper>
+            <StyledTitle variant="h5" component="h1" color="initial" align="left">
+              Dane nabywcy
+            </StyledTitle>
+            <Fields fields={clientFields} inputRef={register} errors={errors} state={persons} />
+          </InnerWrapper>
+        </StyledWrapper>
+      </Form>
+    </StepTemplate>
   );
 };
 

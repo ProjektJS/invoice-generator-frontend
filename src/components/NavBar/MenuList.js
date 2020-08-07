@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import styled from 'styled-components';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import { useStyles } from 'theme/styles';
 import { routes } from 'routes';
 
+const StyledIconButton = styled(IconButton)`
+  margin-right: 16px;
+`;
+
 const MenuList = () => {
-  const classes = useStyles();
   const { pathname } = useLocation();
 
   const pages = [
@@ -28,9 +31,9 @@ const MenuList = () => {
 
   return (
     <div>
-      <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+      <StyledIconButton edge="start" color="inherit" aria-label="menu">
         <MenuIcon onClick={handleClick} />
-      </IconButton>
+      </StyledIconButton>
       <Menu
         id="simple-menu"
         anchorEl={anchorEl}
