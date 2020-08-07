@@ -20,12 +20,17 @@ const StyledTextField = styled(TextField)`
   margin-left: 10px;
 `;
 
+const StyledIconButton = styled(IconButton)`
+  width: 35px;
+  height: 35px;
+`;
+
 const MultiFields = ({ fields, errors, inputRef, remove, items }) => {
   return fields.map((item, index) => (
     <StyledWrapper>
-      <IconButton aria-label="delete">
+      <StyledIconButton aria-label="delete">
         <DeleteIcon onClick={() => remove(index)} />
-      </IconButton>
+      </StyledIconButton>
       <StyledTextField
         id={`items[${index}].name`}
         name={`items[${index}].name`}

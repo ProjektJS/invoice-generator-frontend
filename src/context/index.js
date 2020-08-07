@@ -8,12 +8,14 @@ export const useDeviceScreenContext = () => {
 };
 
 const DeviceScreen = ({ children }) => {
-  const [isDesktop, setDesktop] = useState(window.innerWidth > 1024);
+  const [isDesktop, setDesktop] = useState(window.innerWidth >= 1024);
   const [isTablet, setTablet] = useState(window.innerWidth >= 768);
+
   const updateMedia = () => {
-    setDesktop(window.innerWidth > 1024);
+    setDesktop(window.innerWidth >= 1024);
     setTablet(window.innerWidth >= 768);
   };
+
   useEffect(() => {
     window.addEventListener('resize', updateMedia);
     return () => window.removeEventListener('resize', updateMedia);

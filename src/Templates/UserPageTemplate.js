@@ -1,16 +1,18 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Container from '@material-ui/core/Container';
-import NavBar from 'components/NavBar';
-import { useStyles } from 'theme/styles';
+import React from 'templates/node_modules/react';
+import PropTypes from 'templates/node_modules/prop-types';
+import styled from 'templates/node_modules/styled-components';
+import Container from 'templates/node_modules/@material-ui/core/Container';
+import NavBar from 'templates/node_modules/components/NavBar';
+
+const StyledContainer = styled(Container)`
+  margin-top: 48px;
+`;
 
 const UserPageTemplate = ({ children }) => {
-  const classes = useStyles();
-
   return (
     <div>
       <NavBar />
-      <Container className={classes.mainContainer}>{children}</Container>
+      <StyledContainer>{children}</StyledContainer>
     </div>
   );
 };

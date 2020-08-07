@@ -5,8 +5,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, Redirect } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers';
 import Typography from '@material-ui/core/Typography';
-import { validationSchemaOthers } from 'utils/validationSchema';
+import { validationSchemaOthers } from 'utils/validationSchemas';
 import { addOthersData } from 'data/actions';
+import { StepTemplate } from 'templates';
 import { Form, Fields } from 'components/Form';
 import { routes } from 'routes';
 
@@ -47,19 +48,21 @@ const OthersStep = () => {
   }
 
   return (
-    <Form
-      activeStep={2}
-      previousStep={routes.itemsStep}
-      handleSubmit={handleSubmit}
-      onSubmit={onSubmit}
-    >
-      <StyledWrapper>
-        <StyledTitle variant="h5" component="h1" color="initial">
-          Dane faktury
-        </StyledTitle>
-        <Fields fields={fields} inputRef={register} errors={errors} state={invoice} />
-      </StyledWrapper>
-    </Form>
+    <StepTemplate activeStep={2}>
+      <Form
+        activeStep={2}
+        previousStepRoute={routes.itemsStep}
+        handleSubmit={handleSubmit}
+        onSubmit={onSubmit}
+      >
+        <StyledWrapper>
+          <StyledTitle variant="h5" component="h1" color="initial">
+            Dane faktury
+          </StyledTitle>
+          <Fields fields={fields} inputRef={register} errors={errors} state={invoice} />
+        </StyledWrapper>
+      </Form>
+    </StepTemplate>
   );
 };
 

@@ -36,20 +36,6 @@ export const validationSchemaPersons = yup.object().shape({
     .required(),
 });
 
-export const validationSchemaClient = yup.object().shape({
-  name: yup.string().required(),
-  nip: yup
-    .string()
-    .matches(/^[0-9]{10}$/, 'Wymagane 10 znaków!')
-    .required(),
-  street: yup.string().required(),
-  city: yup.string().required(),
-  postalCode: yup
-    .string()
-    .matches(/^[0-9]{2}(?:-[0-9]{3})?$/, 'Wymagane 6 znaków!')
-    .required(),
-});
-
 export const validationSchemaItems = yup.object().shape({
   items: yup.array().of(
     yup.object().shape({
