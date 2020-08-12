@@ -1,5 +1,5 @@
 import React from 'react';
-import { ErrorPageTemplate } from 'templates';
+import { ErrorPageTemplate } from 'layouts';
 
 const ErrorPage = () => {
   return <ErrorPageTemplate />;

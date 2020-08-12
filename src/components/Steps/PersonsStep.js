@@ -8,7 +8,7 @@ import { validationSchemaPersons } from 'utils/validationSchemas';
 import { addPersonsData } from 'data/actions';
 import { routes } from 'routes';
 import { Typography } from '@material-ui/core';
-import { StepTemplate } from 'templates';
+import { StepTemplate } from 'layouts';
 import Fields from '../Form/Fields';
 import Form from '../Form/Form';
 

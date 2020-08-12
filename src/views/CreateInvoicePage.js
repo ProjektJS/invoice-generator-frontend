@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { routes } from 'routes';
-import { CreateInvoicePageTemplate } from 'templates';
+import { CreateInvoicePageTemplate } from 'layouts';
 
 const PersonsStep = React.lazy(() => import('components/Steps/PersonsStep'));
 const ItemsStep = React.lazy(() => import('components/Steps/ItemsStep'));

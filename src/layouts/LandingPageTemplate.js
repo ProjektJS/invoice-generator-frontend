@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Typography from '@material-ui/core/Typography';
 import invoiceImg from 'assets/invoiceImg.svg';
-import { UserPageTemplate } from 'templates';
+import { UserPageTemplate } from 'layouts';
 
 const StyledWrapper = styled.div`
   height: 90vh;

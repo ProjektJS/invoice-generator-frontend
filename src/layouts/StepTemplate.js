@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import Container from '@material-ui/core/Container';
 import Paper from '@material-ui/core/Paper';
 import StepperBar from 'components/StepperBar';
 
-const StyledContainer = styled(Container)`
+const StyledContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 `;
 
 const StyledPaper = styled(Paper)`
@@ -17,7 +17,7 @@ const StyledPaper = styled(Paper)`
 
 const StepTemplate = ({ children, activeStep }) => {
   return (
-    <StyledContainer maxWidth="lg">
+    <StyledContainer>
       <StepperBar activeStep={activeStep} />
       <StyledPaper elevation={3}>{children}</StyledPaper>
     </StyledContainer>

@@ -7,7 +7,7 @@ import { yupResolver } from '@hookform/resolvers';
 import Typography from '@material-ui/core/Typography';
 import { validationSchemaOthers } from 'utils/validationSchemas';
 import { addOthersData } from 'data/actions';
-import { StepTemplate } from 'templates';
+import { StepTemplate } from 'layouts';
 import { Form, Fields } from 'components/Form';
 import { routes } from 'routes';
 

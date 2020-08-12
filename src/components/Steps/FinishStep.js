@@ -4,7 +4,7 @@ import { Redirect } from 'react-router-dom';
 import styled from 'styled-components';
 import { routes } from 'routes';
 import { StepButtons } from 'components/Buttons';
-import { StepTemplate } from 'templates';
+import { StepTemplate } from 'layouts';
 import InvoicePaper from 'components/InvoicePaper';
 import { addInvoiceData } from 'data/actions';
 

@@ -9,7 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import { validationSchemaItems } from 'utils/validationSchemas';
 import { addItemsData } from 'data/actions';
 import { routes } from 'routes';
-import { StepTemplate } from 'templates';
+import { StepTemplate } from 'layouts';
 import { Form, MultiFields } from 'components/Form';
 
 const StyledTitle = styled(Typography)`
