@@ -1,15 +1,10 @@
 import React from 'react';
-import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
 
-const StyledTextField = styled(TextField)`
-  width: 100%;
-`;
-
 const Fields = ({ fields, inputRef, errors, state }) => {
   return fields.map(({ name, label, type }) => (
-    <StyledTextField
+    <TextField
       key={name}
       id={name}
       name={name}
@@ -26,6 +21,7 @@ const Fields = ({ fields, inputRef, errors, state }) => {
       defaultValue={state[name]}
       size="small"
       fullWidth
+      margin="none"
     />
   ));
 };

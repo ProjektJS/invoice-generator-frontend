@@ -1,7 +1,6 @@
 import React from 'react';
 import { useHistory, Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import styled from 'styled-components';
 import { useForm, useFieldArray } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers';
 import Button from '@material-ui/core/Button';
@@ -11,10 +10,6 @@ import { addItemsData } from 'data/actions';
 import { routes } from 'routes';
 import { StepTemplate } from 'layouts';
 import { Form, MultiFields } from 'components/Form';
-
-const StyledTitle = styled(Typography)`
-  margin-bottom: 20px;
-`;
 
 const ItemStep = () => {
   const history = useHistory();
@@ -54,9 +49,9 @@ const ItemStep = () => {
         handleSubmit={handleSubmit}
         onSubmit={onSubmit}
       >
-        <StyledTitle variant="h5" component="h1" color="initial">
+        <Typography variant="h5" component="h1" color="initial">
           Zakupione towary/usługi
-        </StyledTitle>
+        </Typography>
         <MultiFields
           fields={fields}
           errors={errors}

@@ -30,7 +30,7 @@ const StyledInvoice = styled.div`
     width: 80vw;
   }
 
-  @media (min-width: 1280px) {
+  @media (min-width: 1024px) {
     width: 55vw;
   }
 

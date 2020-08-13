@@ -15,12 +15,12 @@ const StyledForm = styled.form`
     width: 80vw;
   }
 
-  @media (min-width: 1280px) {
+  @media (min-width: 1024px) {
     width: 55vw;
   }
 
   @media (min-width: 1440px) {
-    min-height: 70vh;
+    min-height: 65vh;
     width: 45vw;
   }
 

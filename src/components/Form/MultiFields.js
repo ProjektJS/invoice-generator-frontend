@@ -16,8 +16,16 @@ const StyledWrapper = styled.div`
   }
 `;
 
+const StyledTextFieldName = styled(TextField)`
+  @media (min-width: 1024px) {
+    width: 35%;
+  }
+`;
+
 const StyledTextField = styled(TextField)`
-  margin-left: 10px;
+  @media (min-width: 1024px) {
+    width: 17%;
+  }
 `;
 
 const StyledIconButton = styled(IconButton)`
@@ -31,7 +39,7 @@ const MultiFields = ({ fields, errors, inputRef, remove, items }) => {
       <StyledIconButton aria-label="delete">
         <DeleteIcon onClick={() => remove(index)} />
       </StyledIconButton>
-      <StyledTextField
+      <StyledTextFieldName
         id={`items[${index}].name`}
         name={`items[${index}].name`}
         label="Nazwa"

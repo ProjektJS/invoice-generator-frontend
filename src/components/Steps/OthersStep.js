@@ -11,10 +11,6 @@ import { StepTemplate } from 'layouts';
 import { Form, Fields } from 'components/Form';
 import { routes } from 'routes';
 
-const StyledTitle = styled(Typography)`
-  margin-bottom: 20px;
-`;
-
 const StyledWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -56,9 +52,9 @@ const OthersStep = () => {
         onSubmit={onSubmit}
       >
         <StyledWrapper>
-          <StyledTitle variant="h5" component="h1" color="initial">
+          <Typography variant="h5" component="h1" color="initial">
             Dane faktury
-          </StyledTitle>
+          </Typography>
           <Fields fields={fields} inputRef={register} errors={errors} state={invoice} />
         </StyledWrapper>
       </Form>

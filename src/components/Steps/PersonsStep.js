@@ -22,10 +22,6 @@ const InnerWrapper = styled.div`
   margin-bottom: 20px;
 `;
 
-const StyledTitle = styled(Typography)`
-  margin-bottom: 5px;
-`;
-
 const PersonsStep = () => {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -62,15 +58,15 @@ const PersonsStep = () => {
       <Form activeStep={0} handleSubmit={handleSubmit} onSubmit={onSubmit}>
         <StyledWrapper>
           <InnerWrapper>
-            <StyledTitle variant="h5" component="h1" color="initial" align="left">
+            <Typography variant="h5" component="h1" color="initial" align="left">
               Dane sprzedawcy
-            </StyledTitle>
+            </Typography>
             <Fields fields={sellerFields} inputRef={register} errors={errors} state={persons} />
           </InnerWrapper>
           <InnerWrapper>
-            <StyledTitle variant="h5" component="h1" color="initial" align="left">
+            <Typography variant="h5" component="h1" color="initial" align="left">
               Dane nabywcy
-            </StyledTitle>
+            </Typography>
             <Fields fields={clientFields} inputRef={register} errors={errors} state={persons} />
           </InnerWrapper>
         </StyledWrapper>

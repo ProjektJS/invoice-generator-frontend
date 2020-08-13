@@ -11,13 +11,17 @@ import { useDeviceScreenContext } from 'context';
 import { routes } from 'routes';
 
 const StyledStepper = styled(Stepper)`
-  margin-top: 48px;
+  margin-top: 36px;
   display: flex;
   flex-wrap: wrap;
 `;
 
 const StyledMobileStepper = styled(MobileStepper)`
   margin-top: 18px;
+`;
+
+const StyledStep = styled(Step)`
+  cursor: pointer;
 `;
 
 const StepperBar = ({ activeStep }) => {
@@ -76,9 +80,9 @@ const StepperBar = ({ activeStep }) => {
       {isDesktop ? (
         <StyledStepper activeStep={activeStep}>
           {steps.map(({ label, path }) => (
-            <Step key={label} onClick={() => handleClickLabel(path)}>
+            <StyledStep key={label} onClick={() => handleClickLabel(path)}>
               <StepLabel>{label}</StepLabel>
-            </Step>
+            </StyledStep>
           ))}
         </StyledStepper>
       ) : (
